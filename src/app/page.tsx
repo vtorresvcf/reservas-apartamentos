@@ -11,7 +11,7 @@ export default function Home() {
         <li>
           <a
             href="/apartamentos/apartamento1"
-            className="text-blue-600 underline"
+            className="text-azulado underline"
           >
             Apartamento 1
           </a>
@@ -19,7 +19,7 @@ export default function Home() {
         <li>
           <a
             href="/apartamentos/apartamento2"
-            className="text-blue-600 underline"
+            className="text-azulado underline"
           >
             Apartamento 2
           </a>

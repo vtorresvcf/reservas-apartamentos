@@ -1,95 +1,175 @@
 "use client";
-
-import React, { useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
+import { ChevronDown, Phone, Mail, X, Menu } from "lucide-react";
 
-const Navbar: React.FC = () => {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-
-  // Links dinámicos
-  const links = [
-    { name: "Inicio", href: "/" },
-    { name: "Servicios", href: "/servicios" },
-    { name: "Blog", href: "/blog" },
-    { name: "Contacto", href: "/contacto" },
-  ];
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
-    <nav className="relative px-4 py-4 flex items-center justify-between bg-white shadow">
-      {/* Logo */}
-      <Link href="/" className="text-3xl font-bold leading-none">
-        <span className="text-blue-600">MiLogo</span>
-      </Link>
-
-      {/* Botón burger (mobile) */}
-      <div className="lg:hidden">
-        <button
-          className="flex items-center text-blue-600 p-3"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <svg
-            className="w-6 h-6 fill-current"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {isOpen ? (
-              <path
-                fillRule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 
-                111.414 1.414L11.414 10l4.293 4.293a1 1 0 
-                01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 
-                01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 
-                010-1.414z"
-              />
-            ) : (
-              <path
-                d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 
-              6h20v2H0v-2z"
-              />
-            )}
-          </svg>
-        </button>
-      </div>
-
-      {/* Links centrados (desktop) + menú responsive */}
-      <div
-        className={`${
-          isOpen ? "block" : "hidden"
-        } absolute top-full left-0 w-full bg-white lg:bg-transparent lg:static lg:block`}
-      >
-        <ul className="flex flex-col lg:flex-row lg:justify-center lg:items-center lg:space-x-6 p-4 lg:p-0 text-center">
-          {links.map((link) => (
-            <li key={link.name}>
-              <Link
-                href={link.href}
-                className="block py-2 text-gray-700 hover:text-blue-600 transition"
-              >
-                {link.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Botón login + selector de idioma */}
-      <div className="hidden lg:flex items-center space-x-4">
-        {/* Selector idioma */}
-        <select className="border rounded px-2 py-1 text-sm">
-          <option value="es">ES</option>
-          <option value="en">EN</option>
-          <option value="fr">FR</option>
-        </select>
-
-        {/* Login */}
+    <nav className="relative w-full shadow bg-white z-50 lg:py-4 xl:py-2">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+        {/* Logo */}
         <Link
-          href="/login"
-          className="py-2 px-4 text-white bg-blue-600 rounded hover:bg-blue-700 transition"
+          href="/"
+          className="text-2xl lg:text-3xl font-bold text-azulado mx-auto"
         >
-          Login
+          Apartamentos Mushus
         </Link>
+
+        {/* Desktop Links */}
+        <div className="hidden lg:flex flex-1 justify-center space-x-8">
+          <Link
+            href="/"
+            className="font-semibold hover:text-azulado transition text-center"
+          >
+            Inicio
+          </Link>
+
+          {/* Dropdown Apartamentos */}
+          <div className="relative text-center">
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="flex flex-col items-center font-semibold hover:text-azulado transition"
+            >
+              Apartamentos
+              <ChevronDown
+                size={18}
+                className={`ml-1 transition-transform ${
+                  isDropdownOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            <div
+              className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-44 bg-white border rounded shadow-lg overflow-hidden transition-all duration-300 ${
+                isDropdownOpen
+                  ? "opacity-100 scale-100"
+                  : "opacity-0 scale-95 pointer-events-none"
+              }`}
+            >
+              <Link
+                href="/apartamento1"
+                className="block px-4 py-2 hover:bg-gray-100 transition text-center"
+              >
+                Apartamento 1
+              </Link>
+              <Link
+                href="/apartamento2"
+                className="block px-4 py-2 hover:bg-gray-100 transition text-center"
+              >
+                Apartamento 2
+              </Link>
+            </div>
+          </div>
+
+          <Link
+            href="/contacto"
+            className="font-semibold hover:text-azulado transition text-center"
+          >
+            Contacto
+          </Link>
+        </div>
+
+        {/* Contact Info */}
+        <div className="hidden lg:flex lg:flex-col lg:py-6 xl:flex-row xl:py-0 items-center ml-auto space-x-6 xl:space-x-6">
+          <div className="flex items-center space-x-2 hover:text-azulado transition cursor-pointer">
+            <Phone size={20} />
+            <span className="font-medium">+34 654 033 603</span>
+          </div>
+          <div className="flex items-center space-x-2 hover:text-azulado transition cursor-pointer">
+            <Mail size={20} />
+            <span className="font-medium">vtorresvcf@gmail.com</span>
+          </div>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <div className="lg:hidden flex items-center">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-azulado"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`lg:hidden bg-white border-t overflow-hidden transition-all duration-300 text-center ${
+          isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <ul className="flex flex-col space-y-2 p-4">
+          <li>
+            <Link
+              href="/"
+              className="block py-2 px-4 font-semibold hover:text-azulado transition"
+            >
+              Inicio
+            </Link>
+          </li>
+
+          {/* Mobile Dropdown */}
+          <li className="relative">
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="flex justify-center items-center w-full py-2 px-4 font-semibold hover:text-azulado transition"
+            >
+              Apartamentos
+              <ChevronDown
+                size={18}
+                className={`ml-1 transition-transform ${
+                  isDropdownOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            <div
+              className={`pl-4 mt-1 overflow-hidden transition-all duration-300 ${
+                isDropdownOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+              }`}
+            >
+              <Link
+                href="/apartamento1"
+                className="block py-2 px-4 hover:bg-gray-100 rounded transition"
+              >
+                Apartamento 1
+              </Link>
+              <Link
+                href="/apartamento2"
+                className="block py-2 px-4 hover:bg-gray-100 rounded transition"
+              >
+                Apartamento 2
+              </Link>
+            </div>
+          </li>
+
+          <li>
+            <Link
+              href="/contacto"
+              className="block py-2 px-4 font-semibold hover:text-azulado transition"
+            >
+              Contacto
+            </Link>
+          </li>
+
+          {/* Contact info mobile */}
+          <li className="pt-4 border-t">
+            <div className="flex flex-col space-y-2">
+              <div className="flex justify-center items-center space-x-2 ">
+                <Phone size={20} />
+                <span className="font-medium">+34 654 033 603</span>
+              </div>
+              <div className="flex justify-center items-center space-x-2 ">
+                <Mail size={20} />
+                <span className="font-medium ">vtorresvcf@gmail.com</span>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </nav>
   );
-};
-
-export default Navbar;
+}

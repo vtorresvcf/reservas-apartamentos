@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={inter.className}>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col text-textgray">
         <Navbar />
         <header className="bg-gray-100 p-4">
           <h1 className={montserrat.className}>Mi Web de Apartamentos</h1>
