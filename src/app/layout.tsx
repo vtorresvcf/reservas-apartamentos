@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { Montserrat, Inter } from "next/font/google";
+import Header from "@/components/Header";
 
 const montserrat = Montserrat({ subsets: ["latin"], weight: "700" });
 const inter = Inter({ subsets: ["latin"] });
@@ -22,7 +23,7 @@ export default function RootLayout({
         <header className="bg-gray-100 p-4">
           <h1 className={montserrat.className}>Mi Web de Apartamentos</h1>
         </header>
-
+        <Header />
         {/* Contenedor principal centrado */}
         <main className="flex-1 flex items-center justify-center p-4">
           {children}
