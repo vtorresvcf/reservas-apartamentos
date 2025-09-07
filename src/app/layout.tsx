@@ -1,12 +1,11 @@
-import Navbar from "@/components/Navbar";
+import { Navbar, Header, Footer } from "@/components/layout";
 import "./globals.css";
-import { Montserrat, Inter } from "next/font/google";
-import Header from "@/components/Header";
+import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Mi Web de Apartamentos",
+  title: "Apartamentos Mushus",
   description: "Reserva tu apartamento favorito",
 };
 
@@ -17,18 +16,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={inter.className}>
-      <body className="min-h-screen flex flex-col text-textgray">
+      <body className="min-h-screen flex flex-col text-textgray ">
         <Navbar />
 
         <Header />
         {/* Contenedor principal centrado */}
-        <main className="flex-1 flex items-center justify-center p-4">
-          {children}
-        </main>
+        <main className="flex-1 w-full p-4">{children}</main>
 
-        <footer className="bg-gray-100 p-4 text-center">
-          © 2025 Mi Web de Apartamentos
-        </footer>
+        <Footer />
       </body>
     </html>
   );
