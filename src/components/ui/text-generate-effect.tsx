@@ -1,35 +1,39 @@
 "use client";
+
 import { useEffect } from "react";
-import { motion, stagger, useAnimate } from "framer-motion";
+import { motion, useAnimate, stagger } from "framer-motion";
 import { cn } from "@/lib/utils";
+
+interface TextGenerateEffectProps {
+  text: string;
+  className?: string;
+  filter?: boolean;
+  duration?: number;
+  onAnimationComplete?: () => void;
+}
 
 export default function TextGenerateEffect({
   text,
   className,
   filter = true,
-  duration = 0.5,
-}: {
-  text: string;
-  className?: string;
-  filter?: boolean;
-  duration?: number;
-}) {
+  duration = 0.8,
+  onAnimationComplete,
+}: TextGenerateEffectProps) {
   const [scope, animate] = useAnimate();
   const wordsArray = text.split(" ");
 
   useEffect(() => {
     animate(
       "span",
+      { opacity: 1, filter: filter ? "blur(0px)" : "none" },
       {
-        opacity: 1,
-        filter: filter ? "blur(0px)" : "none",
-      },
-      {
-        duration: duration ?? 1,
+        duration: duration,
         delay: stagger(0.2),
       }
-    );
-  }, [animate, filter, duration]);
+    ).then(() => {
+      if (onAnimationComplete) onAnimationComplete();
+    });
+  }, [animate, filter, duration, onAnimationComplete]);
 
   return (
     <div className={cn("font-bold", className)}>
@@ -38,9 +42,7 @@ export default function TextGenerateEffect({
           <motion.span
             key={word + idx}
             className="opacity-0"
-            style={{
-              filter: filter ? "blur(10px)" : "none",
-            }}
+            style={{ filter: filter ? "blur(10px)" : "none" }}
           >
             {word}{" "}
           </motion.span>

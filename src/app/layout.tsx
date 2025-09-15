@@ -1,4 +1,4 @@
-import { Navbar, Header, Footer } from "@/components/layout";
+import { Navbar, Footer } from "@/components/layout";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -19,7 +19,6 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col text-textgray ">
         <Navbar />
 
-        <Header />
         {/* Contenedor principal centrado */}
         <main className="flex-1 w-full p-4">{children}</main>
 
