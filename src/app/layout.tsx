@@ -20,7 +20,7 @@ export default function RootLayout({
         <Navbar />
 
         {/* Contenedor principal centrado */}
-        <main className="flex-1 w-full p-4">{children}</main>
+        <main className="flex-1 w-full">{children}</main>
 
         <Footer />
       </body>
