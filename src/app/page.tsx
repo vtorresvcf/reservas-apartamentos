@@ -1,4 +1,4 @@
-import { Description } from "@/components/home";
+import { BannerVentajas, Description } from "@/components/home";
 import { Header } from "@/components/layout";
 
 export default function Home() {
@@ -6,6 +6,7 @@ export default function Home() {
     <div>
       <Header />
       <Description />
+      <BannerVentajas />
     </div>
   );
 }

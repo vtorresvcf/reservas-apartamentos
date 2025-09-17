@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { HeroCarousel } from "../ui";
 
 const MotionDiv = motion.create("div");
 
@@ -30,6 +31,9 @@ export default function Hero() {
           Relájate en nuestros acogedores apartamentos y descubre todo lo que
           este rincón mediterráneo tiene preparado para ti.
         </p>
+        <div className="w-full max-w-6xl mt-10">
+          <HeroCarousel />
+        </div>
       </MotionDiv>
     </section>
   );
