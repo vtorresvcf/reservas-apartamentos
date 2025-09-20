@@ -3,17 +3,23 @@
 import React from "react";
 import CardContainer, { CardBody, CardItem } from "@/components/ui/3d-card";
 import { motion } from "framer-motion";
+import { TextGenerateEffect } from "../ui";
+import { Users } from "lucide-react";
 
 const apartments = [
   {
-    title: "Apartamento en la Playa",
-    description: "2 habitaciones · terraza · vistas al mar",
+    title: "Apartamento en la Playa de Oliva",
+    view: "VISTA MAR",
+    beds: "1 ó 2 Camas dobles",
+    maxPersons: 4,
     image:
       "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=2560&auto=format&fit=crop",
   },
   {
-    title: "Apartamento en el Centro",
-    description: "1 habitación · cerca de todo · moderno",
+    title: "Apartamento en la Playa de Miramar",
+    view: "VISTA MAR",
+    beds: "1 ó 2 Camas dobles",
+    maxPersons: 3,
     image:
       "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2560&auto=format&fit=crop",
   },
@@ -23,72 +29,117 @@ export default function BannerApartamentos() {
   return (
     <div className="max-w-7xl mx-auto p-6">
       {/* Título principal */}
-      <motion.h2
-        className="text-3xl sm:text-4xl font-bold text-center text-neutral-700 dark:text-white mb-10"
+      <motion.div
         initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="text-center"
       >
-        Apartamentos
-      </motion.h2>
+        <motion.h2 className="text-5xl md:text-4xl font-semibold tracking-tight text-transparent bg-clip-text cursor-default inline-block">
+          {"Apartamentos".split("").map((char, index) => (
+            <motion.span
+              key={index}
+              style={{
+                backgroundImage: "linear-gradient(90deg, #489eb1, #96c2db)",
+              }}
+              className="bg-clip-text text-transparent inline-block"
+              whileHover={{
+                y: -4,
+                backgroundImage: "linear-gradient(90deg, #96c2db, #489eb1)",
+              }}
+              transition={{
+                duration: 0.4,
+                delay: index * 0.03,
+                ease: "easeInOut",
+              }}
+            >
+              {char}
+            </motion.span>
+          ))}
+        </motion.h2>
+
+        {/* Subtítulo animado */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="mt-2"
+        >
+          <TextGenerateEffect
+            text="Donde cada día comienza con una sonrisa"
+            className="text-lg md:text-2xl font-medium text-neutral-600 dark:text-neutral-300 drop-shadow-sm leading-snug cursor-default"
+            duration={1.2}
+          />
+        </motion.div>
+      </motion.div>
 
       {/* Grid de cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
         {apartments.map((apt, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ y: -5 }}
           >
-            <CardContainer className="inter-var">
-              <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-[500px] sm:h-[520px] rounded-2xl p-6 border shadow-lg">
+            <CardContainer className="inter-var w-full">
+              <CardBody className="bg-gray-50 relative group/card dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-[500px] sm:h-[520px] rounded-2xl p-6 border shadow-lg overflow-hidden">
+                {/* Vista */}
+                <CardItem
+                  translateZ="40"
+                  className="text-xs text-azulado font-semibold mb-1 uppercase"
+                >
+                  {apt.view}
+                </CardItem>
+
                 {/* Título */}
                 <CardItem
                   translateZ="50"
-                  className="text-2xl sm:text-3xl font-bold text-neutral-700 dark:text-white"
+                  className="cursor-default text-xl sm:text-2xl font-semibold tracking-tight text-neutral-700 dark:text-white line-clamp-2 mb-2"
                 >
                   {apt.title}
                 </CardItem>
 
-                {/* Descripción */}
+                {/* Camas y personas */}
                 <CardItem
-                  as="p"
                   translateZ="60"
-                  className="text-neutral-500 text-sm sm:text-base max-w-sm mt-3 dark:text-neutral-300"
+                  className="flex items-center text-sm sm:text-base text-neutral-600 dark:text-neutral-300 mb-4"
                 >
-                  {apt.description}
+                  <span className="mr-2">{apt.beds}</span>
+                  <Users className="w-4 h-4 mr-1 text-azulado" />
+                  <span>{apt.maxPersons}</span>
                 </CardItem>
 
                 {/* Imagen */}
                 <CardItem
                   translateZ="100"
-                  className="w-full mt-5 h-[300px] sm:h-[350px]"
+                  className="w-full mt-2 h-[250px] sm:h-[300px] overflow-hidden rounded-xl"
                 >
                   <img
                     src={apt.image}
                     height="1000"
                     width="1000"
-                    className="h-full w-full object-cover rounded-xl group-hover/card:shadow-xl"
+                    className="h-full w-full object-cover rounded-xl transition-shadow duration-300 group-hover/card:shadow-xl"
                     alt={apt.title}
                   />
                 </CardItem>
 
-                {/* Botones */}
+                {/* Botones Ver más → y Reservar */}
                 <div className="flex justify-between items-center mt-6">
                   <CardItem
                     translateZ={20}
                     as="a"
                     href="#"
-                    className="px-4 py-2 rounded-xl text-xs sm:text-sm font-normal dark:text-white bg-white/20 backdrop-blur-sm hover:bg-white/30 transition"
+                    className="px-4 py-2 rounded-xl text-xs sm:text-sm font-normal dark:text-white bg-white/20 backdrop-blur-sm hover:bg-white/50 shadow-sm transition transform"
                   >
                     Ver más →
                   </CardItem>
                   <CardItem
                     translateZ={20}
                     as="button"
-                    className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-xs sm:text-sm font-bold text-white transition"
+                    className="px-4 py-2 rounded-xl bg-azulado hover:bg-cyan-500 text-xs sm:text-sm font-bold text-white shadow-sm transition transform"
                   >
                     Reservar
                   </CardItem>
