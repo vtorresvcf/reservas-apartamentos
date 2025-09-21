@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
 import {
   Car,
@@ -13,148 +12,101 @@ import {
   Shield,
 } from "lucide-react";
 
+const MotionDiv = motion.create("div");
+
 const serviceCategories = [
   {
-    category: "Aparcamiento e instalaciones",
-    icon: Car,
-    items: ["Plaza de aparcamiento", "Aparcamiento incluido"],
+    icon: <Car size={32} className="text-azulado" />,
+    title: "Aparcamiento e instalaciones",
+    description: "Plaza de aparcamiento, aparcamiento incluido",
   },
   {
-    category: "Políticas",
-    icon: Users,
-    items: ["Accesible las 24h", "Se permiten niños"],
+    icon: <Users size={32} className="text-azulado" />,
+    title: "Políticas",
+    description: "Accesible las 24h, se permiten niños",
   },
   {
-    category: "Características de la ubicación",
-    icon: MapPin,
-    items: ["Frente a la playa", "Vistas al mar"],
-  },
-
-  {
-    category: "Calefacción y aire acondicionado",
-    icon: Thermometer,
-    items: ["Aire acondicionado", "Ventiladores de techo"],
+    icon: <MapPin size={32} className="text-azulado" />,
+    title: "Ubicación",
+    description: "Frente a la playa, vistas al mar",
   },
   {
-    category: "Entretenimiento",
-    icon: Tv,
-    items: ["TV (Antena)"],
+    icon: <Thermometer size={32} className="text-azulado" />,
+    title: "Confort",
+    description: "Aire acondicionado, ventiladores de techo",
   },
   {
-    category: "Oficina con Internet",
-    icon: Wifi,
-    items: ["Banda ancha inalámbrica Internet"],
+    icon: <Tv size={32} className="text-azulado" />,
+    title: "Entretenimiento",
+    description: "TV disponible",
   },
   {
-    category: "Cocina y comedor",
-    icon: Coffee,
-    items: [
-      "Licuadora",
-      "Silla alta para niños",
-      "Máquina de café",
-      "Utensilios de cocina",
-      "Lavavajillas",
-      "Fuego de cocina",
-      "Microondas",
-      "Nevera",
-      "Especias",
-      "Tostador",
-      "Aspirador",
-    ],
+    icon: <Wifi size={32} className="text-azulado" />,
+    title: "Oficina con Internet",
+    description: "Banda ancha inalámbrica",
   },
   {
-    category: "Seguridad en el hogar",
-    icon: Shield,
-    items: [
-      "Extintor de incendios",
-      "Botiquín de primeros auxilios",
-      "Detector de humo",
-    ],
+    icon: <Coffee size={32} className="text-azulado" />,
+    title: "Cocina y comedor",
+    description: "Cafetera, lavavajillas, microondas y más",
+  },
+  {
+    icon: <Shield size={32} className="text-azulado" />,
+    title: "Seguridad",
+    description: "Extintor, botiquín, detector de humo",
   },
 ];
 
-export default function ServicesSection() {
+export default function ServicesBanner() {
   return (
-    <div
-      className="w-full py-12"
-      style={{ background: "linear-gradient(to bottom, #f3f4f6, #ffffff)" }}
-    >
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Título */}
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-3xl md:text-4xl font-semibold text-center text-transparent bg-clip-text cursor-default mb-6"
-          style={{
-            backgroundImage: "linear-gradient(90deg, #489eb1, #96c2db)",
-          }}
-        >
-          Servicios
-        </motion.h2>
+    <section className="w-full bg-gray-50 py-16 relative overflow-hidden cursor-default">
+      {/* Título principal */}
+      <motion.h2
+        initial={{ opacity: 0, y: -30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="text-3xl md:text-4xl font-semibold text-center mb-12"
+      >
+        Servicios pensados para tu{" "}
+        <span className="text-azulado underline decoration-azulado/50">
+          comodidad
+        </span>
+      </motion.h2>
 
-        {/* Subtítulo */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="text-center text-lg md:text-xl text-neutral-700 dark:text-neutral-300 mb-10"
-        >
-          Todo lo que necesitas para disfrutar de tu estancia
-        </motion.p>
-
-        {/* Grid de categorías */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {serviceCategories.map((category, index) => {
-            const IconComponent = category.icon;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md cursor-pointer group transition-all duration-500 hover:shadow-2xl hover:scale-[1.02]"
-              >
-                {/* Icono, título y lista reaccionan juntos al hover */}
-                <motion.div
-                  className="flex items-center mb-3"
-                  whileHover={{ scale: 1.03 }}
-                >
-                  <motion.div
-                    className="w-12 h-12 flex items-center justify-center rounded-full bg-azulado/20 dark:bg-azulado/10 mr-3 transition-colors duration-300 group-hover:bg-azulado/30"
-                    whileHover={{ scale: 1.2 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                  >
-                    <IconComponent className="w-6 h-6 text-azulado dark:text-white" />
-                  </motion.div>
-                  <motion.h3
-                    className="text-lg font-semibold text-neutral-700 dark:text-white"
-                    whileHover={{ color: "#489eb1" }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {category.category}
-                  </motion.h3>
-                </motion.div>
-
-                <motion.ul className="list-disc list-inside text-sm text-neutral-600 dark:text-neutral-300 space-y-1 ml-1">
-                  {category.items.map((item, idx) => (
-                    <motion.li
-                      key={idx}
-                      whileHover={{ scale: 1.02, color: "#489eb1" }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {item}
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              </motion.div>
-            );
-          })}
-        </div>
+      {/* Grid de servicios */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 px-6 text-center">
+        {serviceCategories.map((service, index) => (
+          <MotionDiv
+            key={index}
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: index * 0.12 }}
+            className="flex flex-col items-center gap-4 transition-transform duration-500 hover:scale-105"
+          >
+            {/* Icono animado */}
+            <motion.div
+              whileHover={{ scale: 1.2, rotate: 5 }}
+              transition={{ duration: 0.3 }}
+            >
+              {service.icon}
+            </motion.div>
+            {/* Título */}
+            <h3 className="text-lg md:text-xl font-semibold transition-colors duration-300 hover:text-azulado">
+              {service.title}
+            </h3>
+            {/* Descripción */}
+            <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+              {service.description}
+            </p>
+          </MotionDiv>
+        ))}
       </div>
-    </div>
+
+      {/* Decoraciones sutiles */}
+      <div className="absolute top-0 left-0 w-72 h-72 bg-white/5 rounded-full -translate-x-1/3 -translate-y-1/3 animate-pulse-slow"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/5 rounded-full translate-x-1/4 translate-y-1/4 animate-pulse-slow"></div>
+    </section>
   );
 }

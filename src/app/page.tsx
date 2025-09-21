@@ -2,8 +2,10 @@ import {
   BannerVentajas,
   Description,
   BannerApartamentos,
-  ServicesSection,
+  Services,
+  Reseñas,
 } from "@/components/home";
+
 import { Header } from "@/components/layout";
 
 export default function Home() {
@@ -13,7 +15,8 @@ export default function Home() {
       <Description />
       <BannerVentajas />
       <BannerApartamentos />
-      <ServicesSection />
+      <Services />
+      <Reseñas />
     </div>
   );
 }

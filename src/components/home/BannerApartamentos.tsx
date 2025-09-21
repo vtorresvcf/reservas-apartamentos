@@ -36,27 +36,14 @@ export default function BannerApartamentos() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-center"
       >
-        <motion.h2 className="text-5xl md:text-4xl font-semibold tracking-tight text-transparent bg-clip-text cursor-default inline-block">
-          {"Apartamentos".split("").map((char, index) => (
-            <motion.span
-              key={index}
-              style={{
-                backgroundImage: "linear-gradient(90deg, #489eb1, #96c2db)",
-              }}
-              className="bg-clip-text text-transparent inline-block"
-              whileHover={{
-                y: -4,
-                backgroundImage: "linear-gradient(90deg, #96c2db, #489eb1)",
-              }}
-              transition={{
-                duration: 0.4,
-                delay: index * 0.03,
-                ease: "easeInOut",
-              }}
-            >
-              {char}
-            </motion.span>
-          ))}
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-5xl md:text-4xl font-semibold tracking-tight text-azulado text-center cursor-default"
+        >
+          Apartamentos
         </motion.h2>
 
         {/* Subtítulo animado */}
@@ -75,7 +62,7 @@ export default function BannerApartamentos() {
       </motion.div>
 
       {/* Grid de cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 -mt-8">
         {apartments.map((apt, index) => (
           <motion.div
             key={index}
