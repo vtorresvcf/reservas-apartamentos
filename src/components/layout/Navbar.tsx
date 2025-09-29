@@ -8,7 +8,7 @@ export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
-    <nav className="relative w-full shadow bg-white z-50 lg:py-4 xl:py-2">
+    <nav className="relative w-full shadow bg-gray-50 z-50 lg:py-4 xl:py-2 px-4">
       <div className=" mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
         {/* Logo */}
         <Link
