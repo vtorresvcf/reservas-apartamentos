@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Apartamentos Mushus",
+  description: "Reserva tu apartamento favorito",
+};
+
 export default function ApartamentosDetallePage() {
   return (
     <div>

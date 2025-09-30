@@ -6,6 +6,11 @@ import {
   Reseñas,
 } from "@/components/home";
 
+export const metadata = {
+  title: "Apartamentos Mushus",
+  description: "Reserva tu apartamento favorito",
+};
+
 import { Header } from "@/components/layout";
 
 export default function Home() {

@@ -1,5 +1,6 @@
+// app/layout.tsx
 import { Navbar, Footer } from "@/components/layout";
-import "./globals.css";
+import "../../app/globals.css";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,12 +17,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={inter.className}>
-      <body className="min-h-screen flex flex-col text-textgray ">
+      <body className="min-h-screen flex flex-col text-textgray">
+        {/* Navbar visible en todas las páginas normales */}
         <Navbar />
 
-        {/* Contenedor principal centrado */}
         <main className="flex-1 w-full">{children}</main>
 
+        {/* Footer visible en todas las páginas normales */}
         <Footer />
       </body>
     </html>
