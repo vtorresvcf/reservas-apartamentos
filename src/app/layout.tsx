@@ -1,6 +1,6 @@
 // app/layout.tsx
 import { Navbar, Footer } from "@/components/layout";
-import "../../app/globals.css";
+import "../app/globals.css";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
